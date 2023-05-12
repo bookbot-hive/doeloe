@@ -1,17 +1,17 @@
 import re
 
-def convert_string(input_string):
+def transliterate(input_string):
     conversion_dict = {
-        "DJ": "J",
-        "J": "Y",
-        "TJ": "C",
-        "OE": "U",
-        "NJ": "NY",
-        "SJ": "SY",
-        "CH": "KH"
+        "dj": "j",
+        "j": "y",
+        "tj": "c",
+        "oe": "u",
+        "nj": "ny",
+        "sj": "sy",
+        "ch": "kh"
     }
 
     pattern = re.compile('|'.join(re.escape(key) for key in conversion_dict.keys()), re.IGNORECASE)
-    output_string = pattern.sub(lambda x: conversion_dict[x.group().upper() if x.group().isupper() else x.group().lower()], input_string)
+    output_string = pattern.sub(lambda x: conversion_dict[x.group().lower() if x.group().islower() else x.group().upper()], input_string)
 
     return output_string
